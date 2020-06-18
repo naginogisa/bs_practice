@@ -1,0 +1,9 @@
+<body>
+  <strong>Title:</strong><%= @book.title %>
+
+  <%= @book.body %>
+
+  <%= link_to "Edit", edit_book_path(@book) %>
+
+  <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" %> 
+    </body>
