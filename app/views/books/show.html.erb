@@ -1,9 +1,22 @@
-<body>
-  <strong>Title:</strong><%= @book.title %>
-
-  <%= @book.body %>
-
-  <%= link_to "Edit", edit_book_path(@book) %>
-
-  <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？" %> 
-    </body>
+<div class="body">
+  <div class="container">
+    <p id="notice"></p>
+    <div class="row">
+    <%= render 'books/list', book: @book, user: @user %>
+      <div class="col-xs-9">
+        <h2>Book detail</h2>
+        <table class="table">
+          <tbody>
+            <tr>
+            <td><%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %><br><%= link_to @user.name, edit_user_path(@user) %></td>
+              <td><%= @book.title %></td>
+              <td><%= @book.body %></td>
+              <td> <%= link_to "Edit", edit_book_path(@book),class: "btn-sm btn-success" %></td>
+              <td><%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に削除しますか？",class: "btn-sm btn-danger" %></td> 
+            </tr>
+          </tbody>
+        </table>
+     </div>
+   </div>
+  </div>
+</div>
