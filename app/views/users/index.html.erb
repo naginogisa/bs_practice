@@ -2,7 +2,7 @@
   <div class="container">
     <p id="notice"></p>
       <div class="row">
-        <%= render 'books/list', book: @book, user: @user %>
+        <%= render 'books/list', book: @book, user: @user, users: @users %>
         <div class="col-xs-9">
           <h1>Users</h1>
 
@@ -19,6 +19,19 @@
               <tr>
                   <td><%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %></td>
                   <td><%= user.name %></td>
+                  <td>
+                  <%= user.following_user.count %>フォロー中
+                </td> 
+                 <td>  
+                  <%= user.follower_user.count %>フォロワー
+                 </td>
+                 <td>
+                    <% unless user == current_user %>
+                      <div class='follow_button_<%= user.id%>' >
+                        <%= render 'users/follow_button', user: user %>
+                       </div>
+                    <% end %>      
+                  </td>
                   <td><%= link_to "Show", user_path(user.id) %></td>           
               </tr>
               <% end %>

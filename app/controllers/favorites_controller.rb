@@ -1,5 +1,10 @@
 class FavoritesController < ApplicationController
   before_action :set_book
+  def index
+    @book = Book.new
+    @user = current_user
+    @users = User.all
+  end
 
   def create
     @favorite = current_user.favorites.new(:book_id=>params[:book_id])

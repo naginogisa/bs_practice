@@ -10,12 +10,36 @@
       <th><%= user.name %></th>
       </tr>
       <tr>
-      <th>introduction</th>
-      <th><%= user.introduction %></th>
+        <th>introduction</th>
+        <th><%= user.introduction %></th>
       </tr>
+      <tr>
+        <th> follow</th>
+        <th>
+          <div id='following-count_#{ user.id }'>
+            <%= link_to "#{ user.follower.count }", users_following_path(user) %>
+          </div>
+        </th>
+      </tr>    
+      <tr>
+      <th>follower</th>
+      <th>
+        <div id='follower-count_#{ user.id }'>  
+          <%= link_to "#{ user.followed.count }", users_follower_path(user) %>  
+        </div>
+      </th>
+      </tr>
+      <th>
+      <% unless user == current_user %>
+      <div class='follow_button_<%= user.id%>' >
+        <%= render 'users/follow_button', user: user %>
+       </div>
+    <% end %>    
+      </th>
     </tbody>
   </table>
   <%= link_to "", edit_user_path(@user),class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+  
 
   <h2>New book</h2>
   <%= form_for(book) do |f| %>

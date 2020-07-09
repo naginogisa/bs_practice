@@ -1,0 +1,28 @@
+<h1>Follower Users</h1>
+<table class="table table-hover table-inverse">
+<thead>
+   <tr>
+     <th>image</th>
+     <th>name</th>
+     <th colespan="3"></th>
+   </tr>
+ </thead>
+  <tbody>      
+   <% @followers.each do |follower| %>
+    <tr>
+       <td>
+       <%= attachment_image_tag follower, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %>
+       </td>
+       <td><%= follower.name %></td>   
+       <td>
+        <%= follower.following_user.count %>フォロー中
+      </td> 
+       <td>  
+        <%= follower.follower_user.count %>フォロワー
+       </td>
+       <td><%= link_to "Show", user_path(follower) %></td>
+         
+     </tr>
+   <% end %>
+ </tbody>
+</table>
